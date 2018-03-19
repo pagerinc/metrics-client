@@ -1,0 +1,30 @@
+{
+  "name": "metrics-client",
+  "version": "1.0.0",
+  "description": "Hapi-centric Prometheus Plugin and optional endpoint",
+  "main": "index.js",
+  "scripts": {
+    "test": "lab -La code -t 100"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pagerinc/metrics-client.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pagerinc/metrics-client/issues"
+  },
+  "homepage": "https://github.com/pagerinc/metrics-client#readme",
+  "dependencies": {
+    "hapi": "17.x.x",
+    "prom-client": "11.x.x"
+  },
+  "devDependencies": {
+    "code": "5.x.x",
+    "eslint-config-hapi": "^11.1.0",
+    "eslint-plugin-hapi": "^4.1.0",
+    "lab": "15.x.x",
+    "sinon": "4.x.x"
+  }
+}
