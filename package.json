@@ -1,8 +1,8 @@
 {
-  "name": "metrics-client",
+  "name": "@pager/metrics-client",
   "version": "1.0.1",
   "description": "Hapi-centric Prometheus Plugin and optional endpoint",
-  "main": "index.js",
+  "main": "lib/plugin/index.js",
   "scripts": {
     "test": "lab -La code -t 100"
   },
