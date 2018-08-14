@@ -4,13 +4,20 @@ const Code = require('code');
 const Lab = require('lab');
 const Plugin = require('../../lib/plugin');
 const Hapi = require('hapi');
+const Client = require('prom-client');
 
 const lab = exports.lab = Lab.script();
+const afterEach = lab.afterEach;
 const describe = lab.describe;
 const expect = Code.expect;
 const it = lab.it;
 
 describe('Metrics Plugin', () => {
+
+    afterEach(() => {
+
+        Client.register.clear();
+    });
 
     it('should inject route', async () => {
 
@@ -23,7 +30,7 @@ describe('Metrics Plugin', () => {
             url: '/metrics'
         };
 
-        server.inject(request).then((response) => {
+        await server.inject(request).then((response) => {
 
             expect(response.statusCode).to.equal(200);
             // ensure basic nodejs stat is included as sanity check
@@ -37,7 +44,7 @@ describe('Metrics Plugin', () => {
         await server.register({
             plugin: Plugin,
             options: {
-                urls: ['/another'],
+                metrics_urls: ['/another'],
                 timeout: 1000
             }
         });
@@ -54,11 +61,54 @@ describe('Metrics Plugin', () => {
 
         request.url = '/another';
 
-        server.inject(request).then((response) => {
+        await server.inject(request).then((response) => {
 
             expect(response.statusCode).to.equal(200);
             // ensure basic nodejs stat is included as sanity check
             expect(response.result).to.contain('nodejs_heap_size_used_bytes');
+        });
+    });
+
+    it('should return nondefault health', async () => {
+
+        const server = new Hapi.Server();
+        await server.register({
+            plugin: Plugin,
+            options: {
+                health_path: '/custom_health'
+            }
+        });
+        await server.start();
+
+        const request = {
+            method: 'GET',
+            url: '/custom_health'
+        };
+
+        await server.inject(request).then((response) => {
+
+            expect(response.statusCode).to.equal(200);
+            // ensure basic nodejs stat is included as sanity check
+            expect(response.result.ver).to.exist();
+        });
+    });
+
+    it('should return default health', async () => {
+
+        const server = new Hapi.Server();
+        await server.register(Plugin);
+        await server.start();
+
+        const request = {
+            method: 'GET',
+            url: '/health'
+        };
+
+        await server.inject(request).then((response) => {
+
+            expect(response.statusCode).to.equal(200);
+            // ensure basic nodejs stat is included as sanity check
+            expect(response.result.ver).to.exist();
         });
     });
 });
