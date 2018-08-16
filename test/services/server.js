@@ -3,13 +3,20 @@
 const Code = require('code');
 const Lab = require('lab');
 const Server = require('../../lib/services/server').server;
+const Client = require('prom-client');
 
 const lab = exports.lab = Lab.script();
+const afterEach = lab.afterEach;
 const describe = lab.describe;
 const expect = Code.expect;
 const it = lab.it;
 
 describe('Server', () => {
+
+    afterEach(() => {
+
+        Client.register.clear();
+    });
 
     it('should start server', async () => {
 
