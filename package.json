@@ -4,7 +4,8 @@
   "description": "Hapi-centric Prometheus Plugin and optional endpoint",
   "main": "lib/plugin/index.js",
   "scripts": {
-    "test": "lab -La code -t 100"
+    "test": "lab -La code -t 100",
+    "test-cov-xml": "lab -La code -t 100 -r junit -o coverage.xml"
   },
   "repository": {
     "type": "git",
