@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/pagerinc/metrics-client#readme",
   "dependencies": {
-    "hapi": "17.x.x",
+    "hapi": "18.x",
     "prom-client": "11.x.x"
   },
   "devDependencies": {
