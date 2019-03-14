@@ -24,7 +24,7 @@
     "code": "5.x.x",
     "eslint-config-hapi": "11.x.x",
     "eslint-plugin-hapi": "4.x.x",
-    "lab": "15.x.x",
-    "sinon": "4.x.x"
+    "lab": "18.x",
+    "sinon": "7.x"
   }
 }
