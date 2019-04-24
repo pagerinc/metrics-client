@@ -23,7 +23,7 @@
     "@newrelic/native-metrics": "4.1.x",
     "hoek": "6.x.x",
     "joi": "14.x.x",
-    "prom-client": "11.2.x"
+    "prom-client": "11.3.x"
   },
   "devDependencies": {
     "code": "5.x.x",
