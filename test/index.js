@@ -78,4 +78,75 @@ describe('Metrics Plugin', () => {
 
         expect(server.plugins.metrics.timers).to.be.an.array().and.not.empty();
     });
+
+    it('should register health route with default options', async () => {
+
+        const server = new Hapi.Server();
+        await server.register({
+            plugin: Plugin,
+            options: {}
+        });
+
+        expect(server.match('GET', '/health')).to.be.not.null();
+        expect(server.match('GET', '/healthcheck')).to.be.not.null();
+    });
+
+    it('should register health route with custom options', async () => {
+
+        const server = new Hapi.Server();
+        await server.register({
+            plugin: Plugin,
+            options: {
+                health: {
+                    path: ['/abc', '/ok']
+                }
+            }
+        });
+
+        expect(server.match('GET', '/health')).to.be.null();
+        expect(server.match('GET', '/healthcheck')).to.be.null();
+        expect(server.match('GET', '/abc')).to.be.not.null();
+        expect(server.match('GET', '/ok')).to.be.not.null();
+    });
+
+    it('should returns sha and ver by /health endpoint', async () => {
+
+        const server = new Hapi.Server();
+        await server.register({
+            plugin: Plugin,
+            options: {}
+        });
+
+        const response = await server.inject({
+            url: '/health',
+            method: 'GET'
+        });
+
+        expect(response.statusCode).to.equal(200);
+        expect(response.result).to.be.an.object().and.contain(['sha', 'ver']);
+    });
+
+    it('should returns custom values in response by /health endpoint', async () => {
+
+        const server = new Hapi.Server();
+        await server.register({
+            plugin: Plugin,
+            options: {
+                health: {
+                    response: {
+                        abc: 100
+                    }
+                }
+            }
+        });
+
+        const response = await server.inject({
+            url: '/health',
+            method: 'GET'
+        });
+
+        expect(response.statusCode).to.equal(200);
+        expect(response.result).to.be.an.object().and.contain(['sha', 'ver', 'abc']);
+        expect(response.result.abc).to.equal(100);
+    });
 });
