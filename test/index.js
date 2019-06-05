@@ -113,10 +113,6 @@ describe('Metrics Plugin', () => {
         });
 
         expect(response.statusCode).to.equal(200);
-        // ensure basic nodejs stat is included as sanity check
-
-        console.log(response.result);
-
         expect(response.result).to.contain('http_request_buckets_milliseconds_bucket{le="100",method="get",path="/tests/{?}/{?}/sub",status="200"}');
         expect(response.result).to.contain('http_request_duration_milliseconds_sum{method="get",path="/tests/{?}/{?}/sub",status="200"}');
     });
