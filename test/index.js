@@ -79,6 +79,48 @@ describe('Metrics Plugin', () => {
         expect(server.plugins.metrics.timers).to.be.an.array().and.not.empty();
     });
 
+    it('should collect request metrics with wildcards in path', { plan: 23 }, async () => {
+
+        const server = new Hapi.Server();
+        await server.register({
+            plugin: Plugin,
+            options: {}
+        });
+
+        server.route({
+            path: '/tests/{testId*2}/sub',
+            method: 'GET',
+            handler: (request, h) => {
+
+                return h.response('OK');
+            }
+        });
+
+        for (let i = 0; i < 10; ++i) {
+            const responseTest = await server.inject({
+                method: 'GET',
+                url: `/tests/123${i}/sada${i}/sub`
+            });
+
+            expect(responseTest.statusCode).to.equal(200);
+            expect(responseTest.result).to.equal('OK');
+        }
+
+
+        const response = await server.inject({
+            method: 'GET',
+            url: '/metrics'
+        });
+
+        expect(response.statusCode).to.equal(200);
+        // ensure basic nodejs stat is included as sanity check
+
+        console.log(response.result);
+
+        expect(response.result).to.contain('http_request_buckets_milliseconds_bucket{le="100",method="get",path="/tests/{?}/{?}/sub",status="200"}');
+        expect(response.result).to.contain('http_request_duration_milliseconds_sum{method="get",path="/tests/{?}/{?}/sub",status="200"}');
+    });
+
     it('should register health route with default options', async () => {
 
         const server = new Hapi.Server();
