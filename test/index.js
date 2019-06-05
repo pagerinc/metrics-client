@@ -8,11 +8,16 @@ const Hoek = require('hoek');
 const Plugin = require('..');
 
 const lab = exports.lab = Lab.script();
-const describe = lab.describe;
+const { it, describe, beforeEach, afterEach, before } = lab;
 const expect = Code.expect;
-const it = lab.it;
 
 describe('Metrics Plugin', () => {
+
+    before(() => {
+
+        process.env.VCS_REF = '1234567';
+        process.env.BUILD_DATE = '2007-02-03T04:05:06Z';
+    });
 
     it('should inject route', async () => {
 
@@ -184,7 +189,71 @@ describe('Metrics Plugin', () => {
         });
 
         expect(response.statusCode).to.equal(200);
-        expect(response.result).to.be.an.object().and.contain(['sha', 'ver', 'abc']);
+        expect(response.result).to.be.an.object().and.contain(['sha', 'ver', 'nodeVer', 'npmVer', 'abc', 'buildDate']);
         expect(response.result.abc).to.equal(100);
+    });
+
+    describe('when unexpected or/and undefined env vars', () => {
+
+        let processEnvDump;
+
+        beforeEach(() => {
+
+            processEnvDump = {
+                ...process.env
+            };
+        });
+
+        afterEach(() => {
+
+            Object.assign(process.env, processEnvDump);
+        });
+
+        it('should returns 0.0.0 versions in response by /health endpoint when undefined', async () => {
+
+            delete process.env.npm_package_version;
+            delete process.env.npm_config_user_agent;
+            delete process.env.VCS_REF;
+            delete process.env.BUILD_DATE;
+            delete require.cache[require.resolve('../')];
+
+            const server = new Hapi.Server();
+            await server.register({
+                plugin: require('../'),
+                options: {}
+            });
+
+            const response = await server.inject({
+                url: '/health',
+                method: 'GET'
+            });
+
+            expect(response.statusCode).to.equal(200);
+            expect(response.result).to.be.an.object().and.contain(['sha', 'ver', 'nodeVer', 'npmVer', 'buildDate']);
+            expect(response.result.npmVer).to.equal('0.0.0');
+            expect(response.result.ver).to.equal('0.0.0');
+            expect(response.result.sha).to.equal('0000000');
+            expect(response.result.buildDate).to.equal(new Date('1970-01-01T00:00:00.000Z'));
+        });
+
+        it('should returns 0.0.0 npm version in response by /health endpoint when version string invalid', async () => {
+
+            process.env.npm_config_user_agent = 'node/10.10.10 asdas/213.2.2 sad sad';
+            delete require.cache[require.resolve('../')];
+
+            const server = new Hapi.Server();
+            await server.register({
+                plugin: require('../'),
+                options: {}
+            });
+
+            const response = await server.inject({
+                url: '/health',
+                method: 'GET'
+            });
+
+            expect(response.statusCode).to.equal(200);
+            expect(response.result).to.be.an.object().and.contain(['sha', 'ver', 'nodeVer', 'npmVer', 'buildDate']);
+        });
     });
 });
