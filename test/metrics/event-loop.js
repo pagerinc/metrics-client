@@ -1,7 +1,7 @@
 'use strict';
 
-const Code = require('code');
-const Lab = require('lab');
+const Code = require('@hapi/code');
+const Lab = require('@hapi/lab');
 const Plugin = require('../..');
 const { Registry } = require('prom-client');
 const NativeMetrics = require('@newrelic/native-metrics');

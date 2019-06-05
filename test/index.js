@@ -1,9 +1,9 @@
 'use strict';
 
-const Code = require('code');
-const Lab = require('lab');
-const Hapi = require('hapi');
-const Hoek = require('hoek');
+const Code = require('@hapi/code');
+const Lab = require('@hapi/lab');
+const Hapi = require('@hapi/hapi');
+const Hoek = require('@hapi/hoek');
 
 const Plugin = require('..');
 
