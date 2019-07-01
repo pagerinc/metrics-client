@@ -21,7 +21,7 @@
   "homepage": "https://github.com/pagerinc/metrics-client#readme",
   "dependencies": {
     "@newrelic/native-metrics": "4.x.x",
-    "@hapi/hoek": "7.x",
+    "@hapi/hoek": "8.x",
     "@hapi/joi": "15.x",
     "prom-client": "11.x.x"
   },
