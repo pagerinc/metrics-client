@@ -4,7 +4,8 @@
   "description": "Hapi-centric Prometheus Plugin and optional endpoint",
   "main": "lib/index.js",
   "scripts": {
-    "test": "lab -La @hapi/code -t 100"
+    "test": "lab -La @hapi/code -t 100",
+    "start": "node ./examples/server.js"
   },
   "repository": {
     "type": "git",
