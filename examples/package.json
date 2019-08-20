@@ -1,0 +1,21 @@
+{
+  "name": "metrics-server",
+  "version": "0.1.0",
+  "description": "Example metrics server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "containers@pager.com",
+  "license": "MIT",
+  "dependencies": {
+    "@hapi/hapi": "18.x.x",
+    "@hapi/hoek": "8.x",
+    "@hapi/joi": "15.x",
+    "@newrelic/native-metrics": "4.x.x",
+    "@pager/metrics-client": "4.x.x",
+    "prom-client": "11.x.x"
+  }
+}
