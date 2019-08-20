@@ -1,7 +1,7 @@
 'use strict';
 
 const Hapi = require('@hapi/hapi');
-const Prometheus = require('../lib');
+const Metrics = require('@pager/metrics-client');
 
 const startServer = async () => {
 
@@ -10,7 +10,7 @@ const startServer = async () => {
     });
     await server.register([
         {
-            plugin: Prometheus
+            plugin: Metrics
         }
     ]);
     await server.start();
