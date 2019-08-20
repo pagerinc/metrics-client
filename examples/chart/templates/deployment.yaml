@@ -1,0 +1,84 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "metrics.fullname" . }}
+  labels:
+{{include "metrics.release_labels" . | indent 4}}
+spec:
+  replicas: {{ .Values.replicaCount | default 1 }}
+  revisionHistoryLimit: {{.Values.revisionHistoryLimit | default 2}}
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name | quote }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 30%
+      maxUnavailable: 30%
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+{{include "metrics.release_labels" . | indent 8}}
+    spec:
+      automountServiceAccountToken: false
+      {{- if .Values.global }}
+      {{- if .Values.global.imagePullSecrets }}
+      imagePullSecrets:
+{{ toYaml .Values.global.imagePullSecrets | indent 8 }}
+      {{- end }}
+      {{- else if .Values.imagePullSecrets }}
+      imagePullSecrets:
+{{ toYaml .Values.imagePullSecrets | indent 8 }}
+      {{- end }}
+      {{- if .Values.global }}
+      {{- if .Values.global.affinity }}
+      affinity:
+{{ toYaml .Values.global.affinity | indent 8 }}
+      {{- end }}
+      {{- else if .Values.affinity }}
+      affinity:
+{{ toYaml .Values.affinity | indent 8 }}
+      {{- end }}
+      {{- if .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}
+      {{- end }}
+      {{- if .Values.global }}
+      {{- if .Values.global.tolerations }}
+      tolerations:
+{{ toYaml .Values.global.tolerations | indent 8 }}
+      {{- end }}
+      {{- else if .Values.tolerations }}
+      tolerations:
+{{ toYaml .Values.tolerations | indent 8 }}
+      {{- end }}
+      containers:
+        - name: app
+          image: {{ template "metrics.image_name" . }}
+          imagePullPolicy: {{ .Values.image.pullPolicy | default "" | quote }}
+          ports:
+            - containerPort: {{ .Values.service.internalPort }}
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.service.internalPort }}
+            initialDelaySeconds: 15
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.service.internalPort }}
+            initialDelaySeconds: 15
+            timeoutSeconds: 1
+          resources:
+{{toYaml .Values.resources | indent 12}}
+          env:
+            - name: PORT
+              value: '3000'
+{{- range $name, $value := .Values.env }}
+{{- if not (empty $value) }}
+            - name: {{ $name | quote }}
+              value: {{ $value | quote }}
+{{- end }}
+{{- end }}

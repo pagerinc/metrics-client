@@ -1,0 +1,7 @@
+apiVersion: v1
+description: 'Metrics Server'
+name: metrics-server
+version: 0.0.1
+appVersion: 0.1.0
+home: https://github.com/pagerinc/metrics-client
+icon: https://cdn.pager.com/assets/icon-pills-orange@2x.png
