@@ -2,6 +2,9 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: {{ template "metrics.fullname" . }}
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: {{ .Values.service.internalPort | quote }}
   labels:
 {{include "metrics.release_labels" . | indent 4}}
 spec:
