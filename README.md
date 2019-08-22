@@ -89,46 +89,31 @@ Health endpoint is designed to provide information about a readiness and livenes
 
 ### Metrics List 
 
-CPU
----
-cpu_user_time
-cpu_user_utilization
-cpu_system_time
-cpu_system_utilization
-
-Event Loop
-----------
-event_loop_usage
-event_loop_wait
-
-Memory
-------
-memory_physical
-memory_heap_used
-memory_heap_free
-memory_heap_max
-memory_nonheap_used
-
-HTTP Request 
-------------
-http_request_duration_milliseconds
-http_request_buckets_milliseconds
-
-Garbage Collector
------------------
-gc_pause_time_min
-gc_pause_time_max
-gc_pause_time_total
-
-gc_scavenge_min
-gc_scavenge_max
-gc_scavenge_total
-
-gc_marksweepcompact_min
-gc_marksweepcompact_max
-gc_marksweepcompact_total
-
-gc_incrementalmarking_min
-gc_incrementalmarking_max
-gc_incrementalmarking_total
+| Metrics List|
+|---|
+|cpu_user_time|
+|cpu_user_utilization|
+|cpu_system_time|
+|cpu_system_utilization|
+|event_loop_usage|
+|event_loop_wait|
+|memory_physical|
+|memory_heap_used|
+|memory_heap_free|
+|memory_heap_max|
+|memory_nonheap_used|
+|http_request_duration_milliseconds|
+|http_request_buckets_milliseconds|
+|gc_pause_time_min|
+|gc_pause_time_max|
+|gc_pause_time_total|
+|gc_scavenge_min|
+|gc_scavenge_max|
+|gc_scavenge_total|
+|gc_marksweepcompact_min|
+|gc_marksweepcompact_max|
+|gc_marksweepcompact_total|
+|gc_incrementalmarking_min|
+|gc_incrementalmarking_max|
+|gc_incrementalmarking_total|
 
