@@ -73,7 +73,7 @@ readinessProbe:
 
 ### Internal Ports 
 
-Prometheus server Kubernetes service discovery configuration is going to search running server on kubernetes cluster. It will use  defaul server port `3000`. Thus, metrics-client must start at default port `3000`. If the server is not already running on port `3000`, it should be added on containers details.  
+Prometheus server Kubernetes service discovery configuration is going to search running server on kubernetes cluster. It will use  default server port `3000`. Thus, metrics-client must start at default port `3000`. If the server is not already running on port `3000`, it should be added on containers details.  
 
 ```yaml
 env:
