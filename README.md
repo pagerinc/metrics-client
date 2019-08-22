@@ -54,7 +54,7 @@ annotations:
 
 ### Readiness and Liveness
 
-Readiness probes are designed to let Kubernetes know when your app is ready to serve traffic. Simmilarly, liveness probes let Kubernetes know if your app is alive or dead. Metric-client plugin is also supports health check and needs to be added below code to the deployment file under container details. 
+Readiness probes are designed to let Kubernetes know when your app is ready to serve traffic. Similarly, liveness probes let Kubernetes know if your app is alive or dead. Metric-client plugin is also supports health check and needs to be added below code to the deployment file under container details. 
 
 ```yaml
 livenessProbe:
@@ -73,7 +73,7 @@ readinessProbe:
 
 ### Internal Ports 
 
-Prometheus server discovery is going to search running server on default server port 3000. Thus, metrics-client must start at default port 3000. If the server is not already running on port 3000, it can easly be added below code under containers detail.  
+Prometheus server discovery is going to search running server on default server port 3000. Thus, metrics-client must start at default port 3000. If the server is not already running on port 3000, it can easily be added below code under containers detail.  
 
 ```yaml
 env:
@@ -81,11 +81,13 @@ env:
   value: "3000"
 ```
 
+## References
+
 ### Health vs Metrics endpoint
 
-Helath endpoint is design to provide an information about a readiness and liveness of the serve. On the other hand, metrics endpoint provides information about the performance of the server such as load time, response time, memory usage, CPU usage ect. 
+Health endpoint is designed to provide information about a readiness and liveness of the serve. On the other hand, metrics endpoint provides information about the performance of the server such as load time, response time, memory usage, CPU usage etc. 
 
-### References 
+### Metrics List 
 
 CPU
 ---
@@ -129,5 +131,4 @@ gc_marksweepcompact_total
 gc_incrementalmarking_min
 gc_incrementalmarking_max
 gc_incrementalmarking_total
-
 
