@@ -87,7 +87,6 @@ env:
 
 Health endpoint is designed to provide information about a readiness and liveness of the serve. On the other hand, metrics endpoint provides information about the performance of the server such as load time, response time, memory usage, CPU usage etc. 
 
-### Metrics List 
 
 | Metrics List|
 |---|
