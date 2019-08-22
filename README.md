@@ -54,7 +54,7 @@ annotations:
 
 ### Readiness and Liveness
 
-Readiness probes are designed to let Kubernetes know when your app is ready to serve traffic. Similarly, liveness probes let Kubernetes know if your app is alive or dead. Metric-client plugin is also supports health check and needs to be added below code to the deployment file under container details. 
+Readiness probes are designed to let Kubernetes know when your app is ready to serve traffic. Similarly, liveness probes let Kubernetes know if your app is alive or dead. Metric-client plugin is also support health check and needs to be added to the deployment file under container details. 
 
 ```yaml
 livenessProbe:
