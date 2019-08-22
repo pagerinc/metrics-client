@@ -73,7 +73,7 @@ readinessProbe:
 
 ### Internal Ports 
 
-Prometheus server Kubernetes service discovery configuration is going to search running server on kubernetes cluster. It will use  defaul server port `3000`. Thus, metrics-client must start at default port `3000`. If the server is not already running on port `3000`, it should be added on containers details.  
+Prometheus server Kubernetes service discovery configuration is going to search running server on kubernetes cluster. It will use  default server port `3000`. Thus, metrics-client must start at default port `3000`. If the server is not already running on port `3000`, it should be added on containers details.  
 
 ```yaml
 env:
@@ -85,7 +85,7 @@ env:
 
 ### Health vs Metrics endpoint
 
-Health endpoint is designed to provide information about a readiness and liveness of the serve. On the other hand, metrics endpoint provides information about the performance of the server such as load time, response time, memory usage, CPU usage etc. 
+Health endpoint is designed to provide information about a readiness and liveness of the server. On the other hand, metrics endpoint provides information about the performance of the server such as load time, response time, memory usage, CPU usage etc. 
 
 
 | Metrics List|
