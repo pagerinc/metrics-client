@@ -21,16 +21,16 @@
   },
   "homepage": "https://github.com/pagerinc/metrics-client#readme",
   "dependencies": {
+    "@hapi/hoek": "8.x.x",
+    "@hapi/joi": "15.x.x",
     "@newrelic/native-metrics": "4.x.x",
-    "@hapi/hoek": "8.x",
-    "@hapi/joi": "16.x",
     "prom-client": "11.x.x"
   },
   "devDependencies": {
     "@hapi/code": "6.x",
-    "eslint-config-hapi": "12.x.x",
-    "eslint-plugin-hapi": "4.x.x",
     "@hapi/hapi": "18.x.x",
-    "@hapi/lab": "20.x"
+    "@hapi/lab": "20.x.x",
+    "eslint-config-hapi": "12.x.x",
+    "eslint-plugin-hapi": "4.x.x"
   }
 }
