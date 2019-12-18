@@ -23,7 +23,7 @@
   "dependencies": {
     "@hapi/hoek": "8.x.x",
     "@hapi/joi": "15.x.x",
-    "@newrelic/native-metrics": "4.x.x",
+    "@newrelic/native-metrics": "5.x",
     "prom-client": "11.x.x"
   },
   "devDependencies": {
