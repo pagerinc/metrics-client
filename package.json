@@ -12,7 +12,7 @@
     "url": "git+https://github.com/pagerinc/metrics-client.git"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=v10.18.0"
   },
   "author": "",
   "license": "ISC",
