@@ -27,9 +27,9 @@
     "prom-client": "11.x.x"
   },
   "devDependencies": {
-    "@hapi/code": "7.x",
+    "@hapi/code": "8.x",
     "@hapi/hapi": "18.x.x",
-    "@hapi/lab": "21.x",
+    "@hapi/lab": "22.x",
     "eslint-config-hapi": "12.x.x",
     "eslint-plugin-hapi": "4.x.x"
   }
