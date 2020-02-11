@@ -22,6 +22,7 @@ describe('Metrics Plugin', () => {
     it('should inject route', async () => {
 
         const server = new Hapi.Server();
+        server.validator(require('@hapi/joi'));
         await server.register(Plugin);
         await server.start();
 
