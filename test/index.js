@@ -11,6 +11,28 @@ const lab = exports.lab = Lab.script();
 const { it, describe, beforeEach, afterEach, before } = lab;
 const expect = Code.expect;
 
+describe('ValidateSettings function', () => {
+
+    it('should throw a validation error if an invalid value is provided', () => {
+
+        const settings = {
+            metrics: ['random']
+        };
+
+        expect(() => Plugin.validateSettings(settings)).to.throw('"metrics[0]" must be one of [cpu, evloop, gc, memory, request]');
+    });
+
+    it('should throw a validation error if an invalid value type is provided', () => {
+
+        const settings = {
+            metrics: 'random'
+        };
+
+        expect(() => Plugin.validateSettings(settings)).to.throw('"metrics" must be an array');
+
+    });
+});
+
 describe('Metrics Plugin', () => {
 
     before(() => {
