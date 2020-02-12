@@ -14,7 +14,7 @@ const startServer = async () => {
         }
     ]);
     await server.start();
-    server.log(`Server started at ${server.info.uri}`);
+    server.log(['info'], `Server started at ${server.info.uri}`);
     return server;
 };
 
