@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/pagerinc/metrics-client#readme",
   "dependencies": {
+    "@hapi/boom": "9.x",
     "@hapi/hapi": "19.x",
     "@hapi/hoek": "9.x",
     "@hapi/joi": "17.x",
@@ -29,8 +30,8 @@
   },
   "devDependencies": {
     "@hapi/code": "8.x",
-    "@hapi/lab": "22.x",
-    "eslint-config-hapi": "12.x.x",
-    "eslint-plugin-hapi": "4.x.x"
+    "@hapi/eslint-config-hapi": "13.x",
+    "@hapi/eslint-plugin-hapi": "4.x",
+    "@hapi/lab": "22.x"
   }
 }
