@@ -11,11 +11,11 @@
   "author": "containers@pager.com",
   "license": "MIT",
   "dependencies": {
-    "@hapi/hapi": "18.x.x",
+    "@hapi/hapi": "19.x",
     "@hapi/hoek": "8.x",
     "@hapi/joi": "15.x",
-    "@newrelic/native-metrics": "4.x.x",
-    "@pager/metrics-client": "4.x.x",
-    "prom-client": "11.x.x"
+    "@newrelic/native-metrics": "4.x",
+    "@pager/metrics-client": "4.x",
+    "prom-client": "11.x"
   }
 }
