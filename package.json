@@ -36,6 +36,9 @@
   "renovate": {
     "extends": [
       "github>pagerinc/renovate-config"
-    ]
+    ],
+    "lockFileMaintenance": {
+      "enabled": false
+    }
   }
 }
