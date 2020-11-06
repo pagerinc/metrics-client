@@ -2,9 +2,10 @@
 
 const Code = require('@hapi/code');
 const Lab = require('@hapi/lab');
-const Plugin = require('../..');
 const { Registry } = require('prom-client');
 const NativeMetrics = require('@newrelic/native-metrics');
+
+const Plugin = require('../..');
 
 
 const { describe, it, beforeEach, after, before } = exports.lab = Lab.script();

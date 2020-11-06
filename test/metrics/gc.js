@@ -2,8 +2,9 @@
 
 const Code = require('@hapi/code');
 const Lab = require('@hapi/lab');
-const Plugin = require('../..');
 const { Registry } = require('prom-client');
+
+const Plugin = require('../..');
 
 
 const { describe, it, beforeEach } = exports.lab = Lab.script();
