@@ -124,6 +124,7 @@ describe('Metrics Plugin', () => {
         });
 
         for (let i = 0; i < 10; ++i) {
+            // eslint-disable-next-line no-await-in-loop
             const responseTest = await server.inject({
                 method: 'GET',
                 url: `/tests/123${i}/sada${i}/sub`
