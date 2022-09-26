@@ -19,7 +19,7 @@ describe('ValidateSettings function', () => {
             metrics: ['random']
         };
 
-        expect(() => Plugin.validateSettings(settings)).to.throw('"metrics[0]" must be one of [cpu, evloop, gc, memory, request]');
+        expect(() => Plugin.validateSettings(settings)).to.throw('"metrics[0]" must be one of [cpu, memory, request]');
     });
 
     it('should throw a validation error if an invalid value type is provided', () => {
