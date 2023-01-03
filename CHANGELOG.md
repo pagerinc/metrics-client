@@ -1,3 +1,15 @@
+# [6.0.0](https://github.com/pagerinc/metrics-client/compare/v5.0.1...v6.0.0) (2023-01-03)
+
+
+### Features
+
+* remove newrelic metrics ([#318](https://github.com/pagerinc/metrics-client/issues/318)) ([87a9d60](https://github.com/pagerinc/metrics-client/commit/87a9d6039d1113bfeb6ab60545d5bfd78fd2977c))
+
+
+### BREAKING CHANGES
+
+* remove newrelic metrics
+
 ## [5.0.1](https://github.com/pagerinc/metrics-client/compare/v5.0.0...v5.0.1) (2020-11-06)
 
 
