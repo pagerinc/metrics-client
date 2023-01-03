@@ -1,0 +1,51 @@
+steps:
+  - id: npm-install
+    name: node:18
+    secretEnv: ['NPM_TOKEN']
+    entrypoint: npm
+    args: ['i', '--quiet', '--package-lock-only']
+
+  - id: npm-audit
+    name: 'gcr.io/$PROJECT_ID/cloudbuilders/audit-filter:0.5.0'
+    secretEnv: ['NPM_TOKEN']
+    entrypoint: "/bin/bash"
+    args:
+      - -c
+      - npm audit --production --json | audit-filter
+    waitFor:
+      - 'npm-install'
+
+  - id: npm-ci
+    name: node:18
+    secretEnv: ['NPM_TOKEN']
+    entrypoint: npm
+    args: ['ci', '--quiet']
+
+  - id: test-unit
+    name: node:18
+    secretEnv: ['NPM_TOKEN']
+    entrypoint: npm
+    args: ['test']
+    env:
+      - 'NODE_ENV=test'
+
+  - id: npm-publish
+    name: 'gcr.io/$PROJECT_ID/cloudbuilders/npm:6.13.4'
+    secretEnv: ['NPM_TOKEN']
+    env:
+      - 'TAG_NAME=$TAG_NAME'
+      - '_PR_NUMBER=$_PR_NUMBER'
+
+timeout: 10m
+
+logsBucket: 'gs://$PROJECT_ID-cloudbuild-logs'
+
+tags:
+  - 'backend'
+  - 'npm'
+  - 'nodejs'
+
+secrets:
+  - kmsKeyName: projects/production-197117/locations/global/keyRings/gcb/cryptoKeys/main
+    secretEnv:
+      NPM_TOKEN: 'CiQA/4lqmakm1M7hB24kv4Fztrvz8xz+yy1xQo3wY7gQrDdMicISTQC7Kyfr3ULFlWV044QfWdySrryle6UDwjdzuo/TBDkNwX8AVH5DNbszvTEqTlzIb/V4l9jd3ZDV1gXo44fkP5OyVV2oIwLF9lO53rk6'
