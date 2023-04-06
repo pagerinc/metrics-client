@@ -38,7 +38,7 @@ steps:
 
 timeout: 10m
 
-logsBucket: 'gs://$PROJECT_ID-cloudbuild-logs'
+logsBucket: 'gs://$PROJECT_ID-primary-cloudbuild-logs'
 
 tags:
   - 'backend'
