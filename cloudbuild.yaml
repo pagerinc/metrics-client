@@ -6,12 +6,12 @@ steps:
     args: ['i', '--quiet', '--package-lock-only']
 
   - id: npm-audit
-    name: 'gcr.io/$PROJECT_ID/cloudbuilders/audit-exclude'
+    name: 'gcr.io/$PROJECT_ID/cloudbuilders/audit-filter:0.5.0'
     secretEnv: ['NPM_TOKEN']
     entrypoint: "/bin/bash"
     args:
       - -c
-      - npm audit --production --json | audit-exclude
+      - npm audit --production --json | audit-filter
     waitFor:
       - 'npm-install'
 
