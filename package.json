@@ -23,7 +23,7 @@
   "dependencies": {
     "@hapi/hoek": "^9.1.0",
     "joi": "^17.3.0",
-    "prom-client": "12.x"
+    "prom-client": "15.x"
   },
   "devDependencies": {
     "@hapi/code": "^8.0.2",
