@@ -45,7 +45,8 @@ tags:
   - 'npm'
   - 'nodejs'
 
-secrets:
-  - kmsKeyName: projects/production-197117/locations/global/keyRings/gcb/cryptoKeys/main
-    secretEnv:
-      NPM_TOKEN: 'CiQA/4lqmakm1M7hB24kv4Fztrvz8xz+yy1xQo3wY7gQrDdMicISTQC7Kyfr3ULFlWV044QfWdySrryle6UDwjdzuo/TBDkNwX8AVH5DNbszvTEqTlzIb/V4l9jd3ZDV1gXo44fkP5OyVV2oIwLF9lO53rk6'
+availableSecrets:
+  secretManager:
+    - versionName: projects/145393225073/secrets/npm-token-readonly/versions/latest
+      env: NPM_TOKEN
+
